@@ -1,0 +1,1 @@
+web: gunicorn british_food_generator:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT

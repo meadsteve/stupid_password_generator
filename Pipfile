@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+fastapi = "*"
+gunicorn = "*"
+uvicorn = "*"
+jinja2 = "*"
+aiofiles = "*"
 
 [requires]
 python_version = "3.7"
