@@ -15,16 +15,19 @@ parts = [
 def generate():
     return _apply_to_each_letter(
         " ".join(random.choice(part) for part in parts),
-        _randomly_caps_letter,
-        _randomly_leet_letter
+        _randomly_leet_letter,
+        _randomly_caps_letter
     )
 
 
 def _apply_to_each_letter(input_string, *funcs):
-    letters = (letter for letter in input_string)
+    return "".join(_apply_functions(letter, *funcs) for letter in input_string)
+
+
+def _apply_functions(letter, *funcs):
     for func in funcs:
-        letters = (func(letter) for letter in letters)
-    return "".join(letters)
+        letter = func(letter)
+    return letter
 
 
 def _randomly_caps_letter(letter):
