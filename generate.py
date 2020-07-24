@@ -13,19 +13,18 @@ parts = [
 
 
 def generate():
-    return _randomly_caps_string(
-        _randomly_leet_string(
-            " ".join(random.choice(part) for part in parts)
-        )
+    return _apply_to_each_letter(
+        " ".join(random.choice(part) for part in parts),
+        _randomly_caps_letter,
+        _randomly_leet_letter
     )
 
 
-def _randomly_caps_string(input_string):
-    return "".join(_randomly_caps_letter(letter) for letter in input_string)
-
-
-def _randomly_leet_string(input_string):
-    return "".join(_randomly_leet_letter(letter) for letter in input_string)
+def _apply_to_each_letter(input_string, *funcs):
+    letters = (letter for letter in input_string)
+    for func in funcs:
+        letters = (func(letter) for letter in letters)
+    return "".join(letters)
 
 
 def _randomly_caps_letter(letter):
@@ -36,9 +35,10 @@ def _randomly_caps_letter(letter):
 
 
 def _randomly_leet_letter(letter):
-    if random.random() > 0.8:
-        return {"e": "3", "a": "4", "o": "0"}.get(letter.lower(), letter)
-    return letter
+    replacements = {"e": "3", "a": "4", "o": "0"}
+    if letter.lower() not in replacements or random.random() < 0.8:
+        return letter
+    return replacements.get(letter.lower(), letter)
 
 
 if __name__ == "__main__":
