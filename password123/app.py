@@ -1,6 +1,7 @@
 import os
 
 from fastapi import FastAPI
+from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 
@@ -24,11 +25,13 @@ def root(request: Request):
     })
 
 
-@app.get("/password", summary="Generates a new password")
+class PasswordResponse(BaseModel):
+    password: str
+
+
+@app.get("/password", summary="Generates a new password", response_model=PasswordResponse)
 def new_password():
-    return {
-        "password": generate()
-    }
+    return PasswordResponse(password=generate())
 
 
 @app.get("/health", summary="Stats on the health of the system")
