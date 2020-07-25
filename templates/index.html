@@ -3,9 +3,32 @@
     <head>
         <title>My password is 123456789</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.css" integrity="sha512-bkbbtvfcVjmlzyq/v4GaSiyJY3DStQhRIbJY9D0qrheR4LgSNNzrEQcdkqdJQUbuYCkLkLCj5icLxdjxRQKsJg==" crossorigin="anonymous" />
     </head>
     <body>
-        <h1>Your new password</h1>
-        <p>My password is "{{new_password}}"</p>
+      <div class="container">
+        <h3>Password generated:</h1>
+        <h4>{{new_password}}</h4>
+      </div> 
     </body>
 </html>
+
+<style>
+  .container {
+    padding: 40px 80px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  h4 {
+    display: flex;
+    justify-content: center;
+    border-color: #2196F3!important;
+    color: #000!important;
+    background-color: #ddffff!important;
+    border-left: 6px solid red!important;
+    border-right: 6px solid red!important;
+  }
+</style>
